@@ -70,27 +70,3 @@ class remote {
     String IRvalue = "";
     int timeout = 0;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
