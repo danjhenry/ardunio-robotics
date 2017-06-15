@@ -5,10 +5,8 @@
 
 using namespace std;
 void servo::servoHome(){
-  for(int i = 0; i < 4; i++){
-    
+  for(int i = 0; i < 4; i++){  
   }
-  
 }
 
 void servo::attach_servos() {
