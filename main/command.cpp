@@ -33,17 +33,3 @@ void servoConfig::angleChange(int angle) {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
