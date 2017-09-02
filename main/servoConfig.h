@@ -14,4 +14,3 @@ class servoConfig {
     int limit[2];
     Servo motor;
 };
-
