@@ -56,8 +56,6 @@ void loop() {
   }
 }
 
-
-
 void moveMotor(int pin) {
   digitalWrite(pin, HIGH);
 }
@@ -66,25 +64,3 @@ void moveMotorComb(int pin1, int pin2) {
   digitalWrite(pin1, HIGH);
   digitalWrite(pin2, HIGH);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
