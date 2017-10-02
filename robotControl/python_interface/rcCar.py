@@ -25,7 +25,7 @@ def main():
         for state, key in keyState('WASD'): 
             if(state < 0 or state == 1):
                 result = sendCode(key.lower())
-                print('key: {}, value: {}, result: {}'.format(key, state, result))
+                print('key: {}, value: {}, Pin: {}'.format(key, state, result))
                 break
         else:
             results = sendCode('q')
