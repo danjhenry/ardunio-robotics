@@ -23,6 +23,7 @@ void loop() {
       for (int i = 0; i < 4; i++) {
         digitalWrite(pins[i], LOW);
       }
+      Serial.print("motors off\n")
       on = false;
     }
     else if (movement == 'w') {
@@ -41,22 +42,12 @@ void loop() {
       on = true;
       moveMotor(rght);
     }
-    else if (movement == 'l') {
-      on = true;
-      moveMotorComb(lft, fwrd);
-    }
-    else if (movement == 'r') {
-      on = true;
-      moveMotorComb(rght, fwrd);
-    }
   }
 }
 
 void moveMotor(int pin) {
   digitalWrite(pin, HIGH);
+  Serial.print("pin on: ")
+  Serial.println(pin)
 }
 
-void moveMotorComb(int pin1, int pin2) {
-  digitalWrite(pin1, HIGH);
-  digitalWrite(pin2, HIGH);
-}
