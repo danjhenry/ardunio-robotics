@@ -50,4 +50,3 @@ void moveMotor(int pin) {
   Serial.print("pin on: ");
   Serial.println(pin);
 }
-
