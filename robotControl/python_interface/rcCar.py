@@ -21,14 +21,17 @@ def keyState(keys):
     return stack
     
 def main():
+    motors_on = False
     while True:
         for state, key in keyState('WASD'): 
             if(state < 0 or state == 1):
                 result = sendCode(key.lower())
+                motors_on = True
                 print('key: {}, value: {}, Pin: {}'.format(key, state, result))
                 break
         else:
-            results = sendCode('q')
-            if(results):
+            if(motors_on):
+                results = sendCode('q')
+                motors_on = False
                 print(results)      
 main()
