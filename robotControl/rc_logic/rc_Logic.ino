@@ -47,6 +47,5 @@ void loop() {
 
 void moveMotor(int pin) {
   digitalWrite(pin, HIGH);
-  Serial.print("pin on: ");
   Serial.println(pin);
 }
