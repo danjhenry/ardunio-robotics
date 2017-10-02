@@ -23,7 +23,7 @@ void loop() {
       for (int i = 0; i < 4; i++) {
         digitalWrite(pins[i], LOW);
       }
-      Serial.print("motors off\n")
+      Serial.print("motors off\n");
       on = false;
     }
     else if (movement == 'w') {
@@ -47,7 +47,7 @@ void loop() {
 
 void moveMotor(int pin) {
   digitalWrite(pin, HIGH);
-  Serial.print("pin on: ")
-  Serial.println(pin)
+  Serial.print("pin on: ");
+  Serial.println(pin);
 }
 
