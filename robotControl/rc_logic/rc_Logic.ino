@@ -1,51 +1,53 @@
 #include <Arduino.h>
 
-bool on = false;
-const int fwrd = 2;
-const int back = 3;
-const int rght = 4;
-const int lft = 5;
-int pins[4] = {2, 3, 4 , 5};
+String forward = "000";
+String backward = "100";
+String left = "110";
+String right = "111";
+
+const int forward_pin = 2;
+const int backward_pin = 3;
+const int right_pin = 4;
+const int left_pin = 5;
 
 void setup() {
-  pinMode(fwrd, OUTPUT);
-  pinMode(back, OUTPUT);
-  pinMode(lft, OUTPUT);
-  pinMode(rght, OUTPUT);
+
   Serial.begin(9600);
 }
 
 void loop() {
-  char movement;
+  bool state;
+  String motorCode;
+  char input;
   if (Serial.available() > 0) {
-    movement = Serial.read();
-    if (movement == 'q' and on == true) {
-      for (int i = 0; i < 4; i++) {
-        digitalWrite(pins[i], LOW);
-      }
-      Serial.print("motors off\n");
-      on = false;
+    input = Serial.read();
+    for (int i = 3; i--;) {
+      motorCode += String((input >> i) & 0x01);
     }
-    else if (movement == 'w') {
-      on = true;
-      moveMotor(fwrd);
+    state = (input >> 3) & 0x01;
+
+    if (motorCode == forward) {
+      motor(state, forward_pin);
     }
-    else if (movement == 's') {
-      on = true;
-      moveMotor(back);
+    else if (motorCode == backward) {
+      motor(state, backward_pin);
     }
-    else if (movement == 'a') {
-      on = true;
-      moveMotor(lft);
+    else if (motorCode == left) {
+      motor(state, left_pin);
     }
-    else if (movement == 'd') {
-      on = true;
-      moveMotor(rght);
+    else if (motorCode == right) {
+      motor(state, right_pin);
     }
   }
 }
 
-void moveMotor(int pin) {
-  digitalWrite(pin, HIGH);
-  Serial.println(pin);
+void motor(bool state, int pin) {
+  if (state) {
+    digitalWrite(pin, HIGH);
+    Serial.println(pin);
+  }
+  else {
+    digitalWrite(pin, LOW);
+    Serial.println(pin);
+  }
 }
