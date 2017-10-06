@@ -11,7 +11,6 @@ const int right_pin = 4;
 const int left_pin = 5;
 
 void setup() {
-
   Serial.begin(9600);
 }
 
@@ -25,7 +24,6 @@ void loop() {
       motorCode += String((input >> i) & 0x01);
     }
     state = (input >> 3) & 0x01;
-
     if (motorCode == forward) {
       motor(state, forward_pin);
     }
