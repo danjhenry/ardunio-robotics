@@ -39,8 +39,7 @@ def main():
                 else:
                     code += '0'
             sendCode(code)
-            print('motors: {} on'.format(motor_on))
-            
+            print('motors: {} on'.format(motor_on))          
         elif(state):
             sendCode('0000')
             state = False                    
