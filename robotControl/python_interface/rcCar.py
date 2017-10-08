@@ -13,7 +13,6 @@ def sendCode(code, delay=0):
     byteChr = chr(int(code, 2))
     conn.write(byteChr.encode())
     time.sleep(delay)
-    return conn.readline().decode()
 
 def keyState(keys):
     stack = []
@@ -24,24 +23,28 @@ def keyState(keys):
     return stack
 
 def main():
-    motorCode = {'w': '000', 'a': '110', 's': '100', 'd': '111'} 
-    motors = {'w': False, 'a': False, 's': False, 'd': False}
+    names = ('forward', 'backward', 'right', 'left')
+    motors = ('w', 's', 'd', 'a')
+    state = False
+    
     while True:
+        code = ''
         keyStack = keyState('WASD')
+        
         if(keyStack):
-            for key, value in motors.items():
-                if(value):
-                    if key not in keyStack:
-                        motors[key] = False
-                        print('off: ', sendCode('0' + motorCode[key]))
+            motor_on = []
+            state = True
+            for index, key in enumerate(motors):
+                if key in keyStack:
+                    code += '1'
+                    motor_on.append(names[index])
                 else:
-                    if key in keyStack:
-                        motors[key] = True
-                        print('on: ', sendCode('1' + motorCode[key]))
-        else:
-            for key, value in motors.items():
-                if(value):
-                    motors[key] = False
-                    print('off: ', sendCode('0' + motorCode[key]))
-                                 
+                    code += '0'
+            sendCode(code)
+            print('motors: {} on'.format(motor_on))
+            
+        elif(state):
+            sendCode('0000')
+            state = False
+                                      
 main()
