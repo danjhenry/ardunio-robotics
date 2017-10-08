@@ -26,11 +26,9 @@ def main():
     names = ('forward', 'backward', 'right', 'left')
     motors = ('w', 's', 'd', 'a')
     state = False
-    
     while True:
         code = ''
         keyStack = keyState('WASD')
-        
         if(keyStack):
             motor_on = []
             state = True
@@ -45,6 +43,5 @@ def main():
             
         elif(state):
             sendCode('0000')
-            state = False
-                                      
+            state = False                    
 main()
