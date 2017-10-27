@@ -9,7 +9,7 @@ void setup() {
 void loop() {
   bool state;
   String motorCode;
-  // 4 bit  one hot code is sent to the ardunio
+  // 4 bit one hot code is sent to the ardunio
   char input;
   if (Serial.available() > 0) {
     input = Serial.read();
