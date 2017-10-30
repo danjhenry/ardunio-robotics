@@ -1,5 +1,4 @@
 import serial, time
-from random import randint
 import win32api
 import win32con
 # tries a connection to the ardunio through windows communication port 3.
