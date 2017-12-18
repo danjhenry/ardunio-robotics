@@ -35,7 +35,6 @@ void handleControls() {
 }
 
 void setup() {
-
   //Communication setup.
   Serial.begin(115200);
   WiFi.begin(ssid, password);
@@ -60,4 +59,3 @@ void setup() {
 void loop() {
   server.handleClient();
 }
-
