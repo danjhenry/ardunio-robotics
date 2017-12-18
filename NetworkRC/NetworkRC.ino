@@ -54,7 +54,7 @@ void setup() {
   //Motor Interface setup.
   pinMode(D1, OUTPUT); // motor A speed (pwm 0 - 1023)
   pinMode(D3, OUTPUT); // motor A direction
-  turn.attach(D0); // steering Control (pwm 60 - 80 - 100)
+  turn.attach(D0); // steering Control (angle 60 - 80 - 100)
 }
 
 void loop() {
