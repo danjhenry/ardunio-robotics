@@ -2,8 +2,8 @@
 #include <ESP8266WebServer.h>
 #include <Servo.h>
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "QuantiumLink";
+const char* password = "HPGNLWZ2DNTXB5K7";
 
 ESP8266WebServer server(80);
 Servo turn;
@@ -12,9 +12,9 @@ void handleControls() {
   String message = "";
   if (server.arg("aSpeed") != "")
   {
-    int Spd = server.arg("aSpeed").toInt();
+    float Spd = server.arg("aSpeed").toInt();
     analogWrite(D1, Spd);
-    message += "motor speed: " + String(Spd / 1023) + "%\n";
+    message += "motor speed: " + String((Spd / 1023) * 100) + "%\n";
   }
   if (server.arg("aDir") != "")
   {
@@ -35,6 +35,7 @@ void handleControls() {
 }
 
 void setup() {
+
   //Communication setup.
   Serial.begin(115200);
   WiFi.begin(ssid, password);
@@ -53,7 +54,7 @@ void setup() {
   //Motor Interface setup.
   pinMode(D1, OUTPUT); // motor A speed (pwm 0 - 1023)
   pinMode(D3, OUTPUT); // motor A direction
-  turn.attach(D0); // steering Control (angle 60 - 80 - 100)
+  turn.attach(D0); // steering Control (pwm 60 - 80 - 100)
 }
 
 void loop() {
