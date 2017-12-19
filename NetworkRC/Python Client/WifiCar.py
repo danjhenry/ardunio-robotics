@@ -30,12 +30,12 @@ def main():
             for key in keysOn:
                 if(key == 'W'):
                     if speed < 1023:
-                        speed += 1023
+                        speed += 128
                     if speed > 1023:
                         speed = 1023
                 if(key == 'S'):
                     if speed > -1023:
-                        speed -= 1023
+                        speed -= 128
                     if speed < -1023:
                         speed = -1023
                 if(key == 'A'):
