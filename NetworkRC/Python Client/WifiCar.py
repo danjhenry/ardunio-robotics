@@ -15,7 +15,7 @@ def keyState(keys):
 def main():
     speed = 0
     direction = 1
-    steerAngle = 80
+    steerAngle = 76
     payload = {}
     payload['aSpeed'] = str(speed)
     payload['aDir'] = str(direction)
@@ -24,32 +24,34 @@ def main():
     while True:
         keysOn = keyState('WASD')
         if(keysOn):
+            if 'S' and 'D' not in keysOn:
+                steerAngle = 76
             on = True
             for key in keysOn:
                 if(key == 'W'):
                     if speed < 1023:
-                        speed += 256
+                        speed += 1023
                     if speed > 1023:
                         speed = 1023
                 if(key == 'S'):
                     if speed > -1023:
-                        speed -= 256
+                        speed -= 1023
                     if speed < -1023:
                         speed = -1023
                 if(key == 'A'):
                     if steerAngle > 60:
-                        steerAngle -= 20
+                        steerAngle -= 5
                 if(key == 'D'):
                     if steerAngle < 100:
-                        steerAngle += 20
+                        steerAngle += 5
             if speed > 0:
-                direction = 0
-            else:
                 direction = 1
+            else:
+                direction = 0
         else:
             speed = 0
             direction = 1
-            steerAngle = 80
+            steerAngle = 76
         if speed < -1:
             payload['aSpeed'] = str(speed*-1)
         else:
