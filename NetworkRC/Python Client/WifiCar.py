@@ -13,6 +13,8 @@ def keyState(keys):
     return stack
 
 def main():
+    pwmInc = 1023 # 1 - 1023
+    steerInc = 20 #1 - 20
     speed = 0
     direction = 1
     steerAngle = 76
@@ -26,24 +28,26 @@ def main():
         if(keysOn):
             if 'S' and 'D' not in keysOn:
                 steerAngle = 76
+            if 'W' or 'S' not in keysOn:
+                speed = 0
             on = True
             for key in keysOn:
                 if(key == 'W'):
                     if speed < 1023:
-                        speed += 128
+                        speed += pwmInc
                     if speed > 1023:
                         speed = 1023
                 if(key == 'S'):
                     if speed > -1023:
-                        speed -= 128
+                        speed -= pwmInc
                     if speed < -1023:
                         speed = -1023
                 if(key == 'A'):
-                    if steerAngle > 60:
-                        steerAngle -= 5
+                    if steerAngle > 40:
+                        steerAngle -= steerInc
                 if(key == 'D'):
                     if steerAngle < 100:
-                        steerAngle += 5
+                        steerAngle += steerInc
             if speed > 0:
                 direction = 1
             else:
@@ -61,7 +65,7 @@ def main():
         if on:
             r = requests.get(url, params=payload)
             print(r.text, '\n')
-            if speed == 0 and steerAngle == 80:
+            if speed == 0 and steerAngle == 76:
                 on = False
                 
 main()
